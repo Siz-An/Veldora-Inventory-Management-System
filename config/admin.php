@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 return [
 
     /*
@@ -34,7 +36,7 @@ return [
     | '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo-mini' => '<b>VA</b>',
+    'logo-mini' => '<b>BP</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -124,7 +126,8 @@ return [
         'providers' => [
             'admin' => [
                 'driver' => 'eloquent',
-                'model'  => Encore\Admin\Auth\Database\Administrator::class,
+                'model'  => User::class,
+                //'model'  => Encore\Admin\Auth\Database\Administrator::class,
             ],
         ],
 
@@ -177,7 +180,8 @@ return [
 
         // User tables and model.
         'users_table' => 'admin_users',
-        'users_model' => Encore\Admin\Auth\Database\Administrator::class,
+        //'users_model' => Encore\Admin\Auth\Database\Administrator::class,
+        'users_model' => User::class,
 
         // Role table and model.
         'roles_table' => 'admin_roles',
@@ -223,7 +227,7 @@ return [
          * or specific method to path like: get:admin/auth/logs.
          */
         'except' => [
-            env('ADMIN_ROUTE_PREFIX', 'admin').'/auth/logs*',
+            env('ADMIN_ROUTE_PREFIX', 'admin') . '/auth/logs*',
         ],
     ],
 
@@ -289,8 +293,8 @@ return [
     | "sidebar-mini".
     |
     */
-    // 'layout' => ['sidebar-mini', 'sidebar-collapse'],
-    'layout' => ['fixed'],
+    // 'layout' => ['fixed'],
+    'layout' => ['sidebar-mini', 'sidebar-collapse'],
 
     /*
     |--------------------------------------------------------------------------
@@ -311,7 +315,7 @@ return [
     | each page
     |
     */
-    'show_version' => true,
+    'show_version' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -321,7 +325,7 @@ return [
     | Whether to display the environment at the footer of each page
     |
     */
-    'show_environment' => true,
+    'show_environment' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -349,9 +353,7 @@ return [
     'minify_assets' => [
 
         // Assets will not be minified.
-        'excepts' => [
-
-        ],
+        'excepts' => [],
 
     ],
 
@@ -406,6 +408,8 @@ return [
     |
     */
     'extensions' => [
-
+        'grid-lightbox' => [
+            'enable' => true,
+        ]
     ],
 ];
